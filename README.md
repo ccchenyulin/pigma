@@ -6,6 +6,33 @@
 [![AUR Version](https://img.shields.io/aur/version/pigma-bin)](https://aur.archlinux.org/packages/pigma-bin)
 ![GitHub repo size](https://img.shields.io/github/repo-size/akirco/pigma)
 
+---
+
+> ## ⚠️ 本仓库说明
+>
+> **这是 [akirco/pigma](https://github.com/akirco/pigma) 的按键位定制版本（个人自用，非官方项目）。**
+>
+> | 项 | 说明 |
+> |---|---|
+> | 上游项目 | https://github.com/akirco/pigma |
+> | 本仓库性质 | 个人按键位定制，未向上游提交 PR |
+> | 定制分支 | `main` |
+> | 定制方式 | 直接修改源码中硬编码的按键映射（`src/input/main.rs` 的 `handle_main_key`），并同步更新帮助面板文案（`src/ui/help.rs` 的 `HELP_ITEMS`） |
+> | 定制范围 | 仅按键绑定与对应帮助文案，未改动任何业务逻辑 |
+> | 原许可证 | 遵循上游 LICENSE（见仓库内 LICENSE 文件） |
+>
+> 具体键位改动：
+> - `←` / `→` 增加 `h` / `l` 作为等价键（继承「cell 模式切列 / 其他时候 seek」双语义，原方向键保留）
+> - 歌词页切换键由 `l` 改为 `y`（因 `l` 被 seek 快进占用）
+> - 上一首由 `p` 改为大写 `N`（`p` 不再绑定任何功能）
+>
+> 上游更新后同步方法：
+> ```bash
+> git fetch upstream
+> git merge upstream/main
+> ```
+
+---
 
 <img width="100" src="./imgs/logo.png" alt="pigma" />
 
@@ -175,11 +202,11 @@ cargo build --release
 | enter         |                播放/进入列表                 |
 | space         |                     暂停                     |
 | f             |                   播放队列                   |
-| l             |                     歌词                     |
+| y             |                     歌词                     |
 | /             |                  搜索/过滤                   |
 | b             |                   样式切换                   |
-| left /right   |                   seek 15s                   |
-| p /n          |                上一首/下一首                 |
+| left/h、right/l |                   seek 15s                   |
+| n /N          |                下一首/上一首                 |
 | ctrl+p        |                command panel                 |
 | L             |               登录网易云                     |
 | c             |  切换表格为cell/row模式(回车进入歌手/专辑)   |

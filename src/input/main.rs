@@ -76,7 +76,7 @@ pub(super) fn handle_main_key(app: &mut App, key_event: KeyEvent) -> color_eyre:
                 row_enter_action(app);
             }
         }
-        KeyCode::Left => {
+        KeyCode::Left | KeyCode::Char('h') => {
             if app.state.navigation.table_mode == TableMode::Cell
                 && app.state.navigation.page != Page::Playlist
             {
@@ -86,7 +86,7 @@ pub(super) fn handle_main_key(app: &mut App, key_event: KeyEvent) -> color_eyre:
                 app.playback.seek_relative(-interval);
             }
         }
-        KeyCode::Right => {
+        KeyCode::Right | KeyCode::Char('l') => {
             if app.state.navigation.table_mode == TableMode::Cell
                 && app.state.navigation.page != Page::Playlist
             {
@@ -96,7 +96,7 @@ pub(super) fn handle_main_key(app: &mut App, key_event: KeyEvent) -> color_eyre:
                 app.playback.seek_relative(interval);
             }
         }
-        KeyCode::Char('l') => {
+        KeyCode::Char('y') => {
             let next = match app.state.navigation.page {
                 Page::Main => Page::Lyrics,
                 Page::Lyrics => Page::Main,
@@ -106,10 +106,10 @@ pub(super) fn handle_main_key(app: &mut App, key_event: KeyEvent) -> color_eyre:
             };
             app.state.events.send(NavigationEvent::Navigate(next));
         }
-        KeyCode::Char('p' | 'P') => {
+        KeyCode::Char('N') => {
             app.playback.prev();
         }
-        KeyCode::Char('n' | 'N') => {
+        KeyCode::Char('n') => {
             app.playback.next();
         }
         KeyCode::Char('c' | 'C') => {
